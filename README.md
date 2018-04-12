@@ -1,4 +1,4 @@
-# spam_filter_naive_bayes
+= spam_filter_naive_bayes
 ###spam filter use naive-bayes
 
 ####使用最大似然估计
