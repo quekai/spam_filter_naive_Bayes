@@ -66,8 +66,11 @@ def train(samples):
             if(ls.__contains__((label,feat)) == False):
                 freq[label,feat] +=1
                 ls[label,feat] =1
-
-    freq['spam','subject'] -=1
+    
+    # freq['spam','subject'] -=1
+    for label,feat in freq.keys():
+        if(freq[label,feat] >= classed[label]):
+            freq[label,feat] = classed[label] - 1
 
 
     for label, feat in freq:
@@ -92,60 +95,6 @@ def classify(sample,classifier):
         return 'spam'
     else:
         return 'ham'
-
-    # ac_label = label
-    # pl = []
-    # pw = []
-    # for word in words:
-    #     if (freq.__contains__(('spam',word)) or freq.__contains__(('ham',word))):
-    #         pn = freq[('spam',word)]
-    #         if(pn == 1):
-    #             pn /= classes['spam']
-    #     else:
-    #         pn = 0.4         #经验值
-    #     pl.append(pn)
-    #     pw.append(word)
-    # ppp = 1
-    # for pn in pl:
-    #     ppp *=pn
-    # _p = 1
-    # for pn in pl:
-    #     _p *=(1-pn)
-    # p = ppp/(ppp+_p)
-    # print(str(p)+" "+str(ppp)+" "+str(_p))
-    # if (p>=0.9):
-    #     return 'spam'
-    # else:
-    #     return 'ham'
-    #
-    # # for i in range(len(pl)):
-    # #     if(pl[i]>1):
-    # #         print(str(pl[i])+pw[i])
-    #
-    # # sp = 0
-    # # for pn in pl:
-    # #     sp += (math.log(1-pn)-math.log(pn))
-    # # standard = math.log((1/0.9)-1)
-    # # if(sp<=standard):
-    # #     return 'spam'
-    # # else:
-    # #     return 'ham'
-    #
-    # # return 'spam'
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 def main():
     hams_path_train = r'enron1/ham'
@@ -184,37 +133,11 @@ def main():
         print("----------------------------------------")
     print(mistakes,mistakes/len(samples))
 
-    # flag = classify(samples[0],classifier)
-    # print(samples[0][0])
-    # # for feat in samples[0]:
-    # pl = []
-    # freq = classifier[1]
-    # print(freq['spam','hplc'])
-    # for word in samples[0][0]:
-    #     if (freq.__contains__(('spam', word)) or freq.__contains__(('ham', word))):
-    #         pn = freq[('spam',word)]
-    #     else:
-    #         pn = 0.4  # 经验值
-    #     pl.append(pn)
-    # print(pl)
-
-    # freq = classifier[1]
-    # values = []
-    # print(classifier[1].values())
-
-
 
 
 
 if __name__ == '__main__':
     main()
-
-
-
-
-
-
-
 
 
 
